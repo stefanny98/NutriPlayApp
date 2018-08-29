@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>-->
+
+    <!-- Primer Intento -->
+   <!-- <color name="colorPrimary">#8BC34A</color>
+    <color name="colorPrimaryDark">#689F38</color>
+    <color name="colorPrimaryLight">#DCEDC8</color>
+    <color name="colorAccent">#FF9800</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="colorIcons">#212121</color>
+    <color name="colorDivider">#BDBDBD</color>-->
+
+    <!-- Segundo Intento -->
+    <color name="colorPrimary">#83bf21</color>
+    <color name="colorPrimaryLight">#b7f258</color>
+    <color name="colorPrimaryDark">#508e00</color>
+    <color name="colorAccent">#FF9800</color>
+    <color name="colorSecondary">#fbc02d</color>
+    <color name="colorSecondaryLight">#fff263</color>
+    <color name="colorSecondaryDark">#c49000</color>
+    <color name="colorPrimaryText">#f1f8e9</color>
+    <color name="colorSecondaryText">#e8f5e9</color>
+    <color name="transparent_white_75">#BF84A770</color>
+
+    <color name="white">#fafafa</color>
+    <color name="white_pressed">#B6B1AF</color>
+
+
+    <color name="fondo_historia1">#20d2bb</color>
+    <color name="fondo_historia2">#f64c73</color>
+
+    <!-- Colores de puntos activos-->
+    <color name="dot_dark_screen1">#948553</color>
+    <color name="dot_dark_screen2">#d1395c</color>
+    <!--<color name="dot_dark_screen3">#2278d4</color>
+    <color name="dot_dark_screen4">#a854d4</color>-->
+
+    <!-- Colores de puntos inactivos -->
+    <color name="dot_light_screen1">#D8C37C</color>
+    <color name="dot_light_screen2">#f98da5</color>
+    <!--<color name="dot_light_screen3">#93c6fd</color>
+    <color name="dot_light_screen4">#e4b5fc</color>-->
+
+    <!--Conjunto de colores de botones-puntos cuando permanecen activados o desactivados-->
+    <array name="array_dot_active">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen1</item>
+        <!--    <item>@color/dot_light_screen3</item>
+            <item>@color/dot_light_screen4</item>-->
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen1</item>
+        <!--    <item>@color/dot_dark_screen3</item>
+            <item>@color/dot_dark_screen4</item>-->
+    </array>
+</resources>
+

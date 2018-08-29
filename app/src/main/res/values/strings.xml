@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">NutriPlayApp</string>
+
+    <!--Para Facebook-->
+    <string name="facebook_app_id">174423793394229</string>
+    <string name="fb_login_protocol_scheme">fb174423793394229</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- IBM Credencial-->
+    <string name="version">2018-03-19</string>
+    <string name="api_key">crhLULCzRvjTt7qnCYo2r-Nz9S0woT1TQYiRfUnQjIac</string>
+</resources>
