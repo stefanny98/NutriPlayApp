@@ -27,7 +27,7 @@ public class AvatarActivity extends AppCompatActivity {
     private ConstraintLayout layoutMain, layoutButtons, layoutContent, lay2;
     private boolean isOpen = false;
 
-    private ImageView a1, a2;
+    private ImageView a1, a2, a3, a4;
 
     private Button acept, cancel;
 
@@ -38,6 +38,8 @@ public class AvatarActivity extends AppCompatActivity {
     private String uid;
     private String url1 = "https://firebasestorage.googleapis.com/v0/b/nutriplayapp.appspot.com/o/avatares%2FManzana.png?alt=media&token=1a8e4cf3-8daa-453c-ac85-7a83168576cf";
     private String url2 = "https://firebasestorage.googleapis.com/v0/b/nutriplayapp.appspot.com/o/avatares%2FPl%C3%A1tano.png?alt=media&token=ec7a0890-ba45-4459-b7bb-f54f50fd4ebd";
+    private String url3 = "https://firebasestorage.googleapis.com/v0/b/nutriplayapp.appspot.com/o/avatares%2Ffresita_nutriplay.png?alt=media&token=030f548d-e882-4573-8116-e166313034ea";
+    private String url4 = "https://firebasestorage.googleapis.com/v0/b/nutriplayapp.appspot.com/o/avatares%2Fpi%C3%B1a_nutriplay.png?alt=media&token=69e6d5fa-b7dd-4ec6-8715-4510885785f0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +55,14 @@ public class AvatarActivity extends AppCompatActivity {
 
         a1 = (ImageView) findViewById(R.id.av1);
         a2 = (ImageView) findViewById(R.id.av2);
+        a3 = (ImageView) findViewById(R.id.av3);
+        a4 = (ImageView) findViewById(R.id.av4);
 
 
         Picasso.get().load(url1).priority(Picasso.Priority.HIGH).into(a1);
         Picasso.get().load(url2).priority(Picasso.Priority.HIGH).into(a2);
+        Picasso.get().load(url3).priority(Picasso.Priority.HIGH).into(a3);
+        Picasso.get().load(url4).priority(Picasso.Priority.HIGH).into(a4);
 
         avatarView = (ImageView) findViewById(R.id.avView);
 
@@ -78,6 +84,21 @@ public class AvatarActivity extends AppCompatActivity {
         viewAvatar((int) centreX, (int) centreY, url2);
     }
 
+    public void updateAvatar3(View view) {
+        float centreX = view.getX() + view.getWidth() / 2;
+        float centreY = view.getY() + view.getHeight() / 2;
+        update(url3);
+        getXY((int) centreX, (int) centreY);
+        viewAvatar((int) centreX, (int) centreY, url3);
+    }
+
+    public void updateAvatar4(View view) {
+        float centreX = view.getX() + view.getWidth() / 2;
+        float centreY = view.getY() + view.getHeight() / 2;
+        update(url4);
+        getXY((int) centreX, (int) centreY);
+        viewAvatar((int) centreX, (int) centreY, url4);
+    }
 
     public void getXY(final Integer x, final Integer y) {
         cancel.setOnClickListener(new View.OnClickListener() {

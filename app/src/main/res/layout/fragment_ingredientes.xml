@@ -8,14 +8,17 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Se necesita de:"/>
-    <TextView
         android:layout_margin="5dp"
+        android:text="Se necesita de:"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/ingreText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textStyle="bold" />
 
 </LinearLayout>

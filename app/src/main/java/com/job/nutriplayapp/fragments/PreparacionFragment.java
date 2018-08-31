@@ -34,7 +34,7 @@ public class PreparacionFragment extends Fragment {
         contenido = (TextView)view.findViewById(R.id.conteText);
         List<String> contenidoList = Arrays.asList(getArguments().getString("prueba").split("-"));
         for( int i = 0; i < contenidoList.size(); i++){
-            contenido.append(contenidoList.get(i)+"\n");
+            contenido.append("\u25CF"+contenidoList.get(i)+"\n");
         }
         return view;
     }
