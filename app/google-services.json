@@ -23,8 +23,20 @@
           }
         },
         {
-          "client_id": "824738567319-s03bqm1mtltebv9jtqdlvhhjq9togckv.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "824738567319-c3rtdk5rkgqoflij4rn4b1pj49677o2f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.job.nutriplayapp",
+            "certificate_hash": "d2c56eb98ffd34a835ae2923f974f5e1fc777ddc"
+          }
+        },
+        {
+          "client_id": "824738567319-i9t4al3lap4cq7egeiamkmkti4ecbdll.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.job.nutriplayapp",
+            "certificate_hash": "24fb5b393bc47513edf924e398d2afffab711fe0"
+          }
         },
         {
           "client_id": "824738567319-s03bqm1mtltebv9jtqdlvhhjq9togckv.apps.googleusercontent.com",
@@ -48,6 +60,37 @@
               "client_type": 3
             }
           ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824738567319:android:84c28c9d5ada0c32",
+        "android_client_info": {
+          "package_name": "com.tecsup.nutriplayapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824738567319-s03bqm1mtltebv9jtqdlvhhjq9togckv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRvR7_RuXpyZRRy2bhAgE1rsArSrxUAYA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

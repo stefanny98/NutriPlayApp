@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.job.nutriplayapp">
+    package="com.tecsup.nutriplayapp">
 
     <!-- Permiso para acceso a la camara del dispositivo -->
     <uses-permission android:name="android.permission.CAMERA" />
@@ -42,39 +42,39 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".activities.LoginActivity"
+            android:name="com.tecsup.nutriplayapp.activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".activities.HomeActivity"></activity>
-        <activity android:name=".activities.ModuloDetalleActivity" />
-        <activity android:name=".PreguntaActivity" />
-        <activity android:name=".FelicidadesActivity" />
-        <activity android:name=".ResultadoActivity" />
-        <activity android:name=".activities.DetalleJuegoActivity" />
-        <activity android:name=".activities.DetalleRecetaActivity" />
-        <activity android:name=".activities.JuegoActivity" />
-        <activity android:name=".activities.RecetaActivity" />
-        <activity android:name=".activities.AvatarActivity" />
-        <activity android:name=".activities.ModuloCuestionarioActivity" />
+        <activity android:name="com.tecsup.nutriplayapp.activities.HomeActivity"></activity>
+        <activity android:name="com.tecsup.nutriplayapp.activities.ModuloDetalleActivity" />
+        <activity android:name="com.tecsup.nutriplayapp.PreguntaActivity" />
+        <activity android:name="com.tecsup.nutriplayapp.FelicidadesActivity" />
+        <activity android:name="com.tecsup.nutriplayapp.ResultadoActivity" />
+        <activity android:name="com.tecsup.nutriplayapp.activities.DetalleJuegoActivity" />
+        <activity android:name="com.tecsup.nutriplayapp.activities.DetalleRecetaActivity" />
+        <activity android:name="com.tecsup.nutriplayapp.activities.JuegoActivity" />
+        <activity android:name="com.tecsup.nutriplayapp.activities.RecetaActivity" />
+        <activity android:name="com.tecsup.nutriplayapp.activities.AvatarActivity" />
+        <activity android:name="com.tecsup.nutriplayapp.activities.ModuloCuestionarioActivity" />
         <activity
-            android:name=".jobsdetallereceta"
-            android:parentActivityName=".activities.RecetaActivity">
+            android:name="com.tecsup.nutriplayapp.jobsdetallereceta"
+            android:parentActivityName="com.tecsup.nutriplayapp.activities.RecetaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.RecetaActivity" />
+                android:value="com.tecsup.nutriplayapp.activities.RecetaActivity" />
         </activity>
         <!--
         <activity android:name=".fragments.IngredientesFragment" />
         <activity android:name=".fragments.PreparacionFragment">
         -->
-        <activity android:name=".activities.ListaAlimentosActivity" />
-        <activity android:name=".activities.DetalleAlimentoActivity"
-            android:parentActivityName=".activities.ListaAlimentosActivity">
+        <activity android:name="com.tecsup.nutriplayapp.activities.ListaAlimentosActivity" />
+        <activity android:name="com.tecsup.nutriplayapp.activities.DetalleAlimentoActivity"
+            android:parentActivityName="com.tecsup.nutriplayapp.activities.ListaAlimentosActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.ListaAlimentosActivity" />
+                android:value="com.tecsup.nutriplayapp.activities.ListaAlimentosActivity" />
         </activity>
-        <activity android:name=".activities.SplashScreenActivity">
+        <activity android:name="com.tecsup.nutriplayapp.activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

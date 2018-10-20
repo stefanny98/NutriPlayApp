@@ -35,7 +35,7 @@
 
     <!-- Colores de puntos activos-->
     <color name="dot_dark_screen1">#948553</color>
-    <color name="dot_dark_screen2">#d1395c</color>
+    <color name="colorRed">#d1395c</color>
     <!--<color name="dot_dark_screen3">#2278d4</color>
     <color name="dot_dark_screen4">#a854d4</color>-->
 

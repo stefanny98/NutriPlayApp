@@ -3,12 +3,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffffff">
+    android:background="#FFFFFF">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/a"
+        android:id="@+id/img_estadoJuego"
         android:gravity="center"
         android:background="@color/colorPrimary"
         android:scaleType="fitCenter">
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:text="Descripcion"
         android:id="@+id/text_dialog"
-        android:layout_below="@+id/a"
+        android:layout_below="@+id/img_estadoJuego"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
@@ -42,7 +42,7 @@
 
     <Button
         android:layout_width="120dp"
-        android:layout_height="70dp"
+        android:layout_height="55dp"
         android:text="Aceptar"
         android:id="@+id/btn_dialog"
         android:gravity="center_vertical|center_horizontal"
