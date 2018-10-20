@@ -43,10 +43,10 @@ public class HomeActivity extends AppCompatActivity {
     private ConstraintLayout layoutButtons;
     private ConstraintLayout layoutContent;
     private boolean isOpen = false;
-    private TextView nombre, moneda, exp, textView5, textView6;
+    private TextView nombre, moneda, exp, textView5, textView6, tutoTitulo, tutoContenido;
     private ImageView avatar;
     private String uid;
-    private CardView expC, monedas;
+    private CardView expC, monedas, tutorial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +65,11 @@ public class HomeActivity extends AppCompatActivity {
         layoutContent = (ConstraintLayout) findViewById(R.id.layoutContent);
         expC = (CardView) findViewById(R.id.cardExp);
         monedas = (CardView) findViewById(R.id.cardMonedas);
-        textView5 = (TextView) findViewById(R.id.textView5);
-        textView6 = (TextView) findViewById(R.id.textView6);
+        textView5 = (TextView) findViewById(R.id.tutoTxt);
+        textView6 = (TextView) findViewById(R.id.tutoInfoTxt);
+        tutorial = (CardView) findViewById(R.id.cardInfoTuto);
+        tutoContenido = (TextView) findViewById(R.id.tutoInfoTxt);
+        tutoTitulo = (TextView) findViewById(R.id.tutoTxt);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -148,8 +151,8 @@ public class HomeActivity extends AppCompatActivity {
             layoutButtons.setVisibility(View.VISIBLE);
             expC.setVisibility(View.INVISIBLE);
             monedas.setVisibility(View.INVISIBLE);
-            textView5.setVisibility(View.INVISIBLE);
-            textView6.setVisibility(View.INVISIBLE);
+            textView5.setVisibility(View.GONE);
+            textView6.setVisibility(View.GONE);
             animator.start();
 
             isOpen = true;
@@ -221,5 +224,39 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         LoginManager.getInstance().logOut();
         finish();
+    }
+
+    public void ganarExp(View view){
+        mostrarTutorial("experiencia");
+        tutorial.setVisibility(View.VISIBLE);
+        expC.setVisibility(View.INVISIBLE);
+        monedas.setVisibility(View.INVISIBLE);
+        fab.setVisibility(View.INVISIBLE);
+    }
+
+    public void ganarMonedas(View view) {
+        mostrarTutorial("monedas");
+        tutorial.setVisibility(View.VISIBLE);
+        expC.setVisibility(View.INVISIBLE);
+        monedas.setVisibility(View.INVISIBLE);
+        fab.setVisibility(View.INVISIBLE);
+    }
+
+    public void mostrarTutorial(String tipo){
+        if(tipo.equals("experiencia")){
+            tutoTitulo.setText("¿Cómo ganar experiencia?");
+            tutoContenido.setText("Participando de los cuestionarios y descubriendo nuevos alimentos ganaras mucha experiencia");
+        }
+        if(tipo.equals("monedas")){
+            tutoTitulo.setText("¿Cómo ganar monedas?");
+            tutoContenido.setText("Participando de los cuestionarios, descubriendo nuevos alimentos y jugando ganaras muchas monedas");
+        }
+    }
+
+    public void cerrarTuto(View view) {
+        tutorial.setVisibility(View.GONE);
+        expC.setVisibility(View.VISIBLE);
+        monedas.setVisibility(View.VISIBLE);
+        fab.setVisibility(View.VISIBLE);
     }
 }
