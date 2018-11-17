@@ -42,23 +42,22 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name="com.tecsup.nutriplayapp.activities.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name="com.tecsup.nutriplayapp.activities.HomeActivity"></activity>
-        <activity android:name="com.tecsup.nutriplayapp.activities.ModuloDetalleActivity" />
-        <activity android:name="com.tecsup.nutriplayapp.PreguntaActivity" />
-        <activity android:name="com.tecsup.nutriplayapp.FelicidadesActivity" />
-        <activity android:name="com.tecsup.nutriplayapp.ResultadoActivity" />
-        <activity android:name="com.tecsup.nutriplayapp.activities.DetalleJuegoActivity" />
-        <activity android:name="com.tecsup.nutriplayapp.activities.DetalleRecetaActivity" />
-        <activity android:name="com.tecsup.nutriplayapp.activities.JuegoActivity" />
-        <activity android:name="com.tecsup.nutriplayapp.activities.RecetaActivity" />
-        <activity android:name="com.tecsup.nutriplayapp.activities.AvatarActivity" />
-        <activity android:name="com.tecsup.nutriplayapp.activities.ModuloCuestionarioActivity" />
+            android:name=".activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activities.HomeActivity" />
+        <activity android:name=".activities.ModuloDetalleActivity" />
+        <activity android:name=".PreguntaActivity" />
+        <activity android:name=".FelicidadesActivity" />
+        <activity android:name=".ResultadoActivity" />
+        <activity android:name=".activities.DetalleJuegoActivity" />
+        <activity android:name=".activities.DetalleRecetaActivity" />
+        <activity android:name=".activities.JuegoActivity" />
+        <activity android:name=".activities.RecetaActivity" />
+        <activity android:name=".activities.AvatarActivity" />
+        <activity android:name=".activities.ModuloCuestionarioActivity" />
         <activity
-            android:name="com.tecsup.nutriplayapp.jobsdetallereceta"
-            android:parentActivityName="com.tecsup.nutriplayapp.activities.RecetaActivity">
+            android:name=".jobsdetallereceta"
+            android:parentActivityName=".activities.RecetaActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.tecsup.nutriplayapp.activities.RecetaActivity" />
@@ -67,20 +66,22 @@
         <activity android:name=".fragments.IngredientesFragment" />
         <activity android:name=".fragments.PreparacionFragment">
         -->
-        <activity android:name="com.tecsup.nutriplayapp.activities.ListaAlimentosActivity" />
-        <activity android:name="com.tecsup.nutriplayapp.activities.DetalleAlimentoActivity"
-            android:parentActivityName="com.tecsup.nutriplayapp.activities.ListaAlimentosActivity">
+        <activity android:name=".activities.ListaAlimentosActivity" />
+        <activity
+            android:name=".activities.DetalleAlimentoActivity"
+            android:parentActivityName=".activities.ListaAlimentosActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.tecsup.nutriplayapp.activities.ListaAlimentosActivity" />
         </activity>
-        <activity android:name="com.tecsup.nutriplayapp.activities.SplashScreenActivity">
+        <activity android:name=".activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.ResultadosModuloActivity"></activity>
     </application>
 
 </manifest>

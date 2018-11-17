@@ -28,17 +28,17 @@ public class ModuloFragment extends Fragment {
     View view;
     private RecyclerView modulosList;
     private DatabaseReference mDatabase;
-    private  List<Modulo> modulos = new ArrayList<Modulo>();
+    private List<Modulo> modulos = new ArrayList<Modulo>();
     private String uid;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d("prueba","entró");
+        Log.d("prueba", "entró");
 
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_modulo, container, false);
-        modulosList = (RecyclerView)view.findViewById(R.id.modulos_list);
+        modulosList = (RecyclerView) view.findViewById(R.id.modulos_list);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
@@ -49,27 +49,28 @@ public class ModuloFragment extends Fragment {
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (final DataSnapshot dsp : dataSnapshot.getChildren()){
+                        for (final DataSnapshot dsp : dataSnapshot.getChildren()) {
                             mDatabase.child("coleccion_modulo").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                    for (DataSnapshot ds : dataSnapshot.getChildren()){
+                                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                                            String id_modulo = ds.getKey();
-                                            if(dsp.getKey().equals(id_modulo)){
-                                               Modulo modulo =  dsp.getValue(Modulo.class);
-                                               modulo.setId(dsp.getKey());
-                                               Log.d("modulo n: ", modulo.toString());
-                                               modulos.add(modulo);
-                                                ModulosAdapter adapter = new ModulosAdapter();
-                                                adapter.setModulos(modulos);
-                                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                                                modulosList.setLayoutManager(layoutManager);
-                                                modulosList.setAdapter(adapter);
-                                            }
+                                        String id_modulo = ds.getKey();
+                                        if (dsp.getKey().equals(id_modulo)) {
+                                            Modulo modulo = dsp.getValue(Modulo.class);
+                                            modulo.setId(dsp.getKey());
+                                            Log.d("asdsadsad: ", modulo.toString());
+                                            modulos.add(modulo);
+                                            ModulosAdapter adapter = new ModulosAdapter();
+                                            adapter.setModulos(modulos);
+                                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                                            modulosList.setLayoutManager(layoutManager);
+                                            modulosList.setAdapter(adapter);
+                                        }
                                     }
                                 }
+
                                 @Override
                                 public void onCancelled(DatabaseError databaseError) {
 

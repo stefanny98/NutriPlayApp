@@ -35,14 +35,17 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class ModuloCuestionarioActivity extends AppCompatActivity {
 
     private Modulo modulo;
-    private TextView pregunta1,pregunta2,pregunta3,ganaste_cantidad,tipo_logro;
-    private RadioGroup primera_pregunta,segunda_pregunta,tercera_pregunta;
-    private RadioButton primera_opcion_p1,segunda_opcion_p1,tercera_opcion_p1,primera_opcion_p2,segunda_opcion_p2,tercera_opcion_p2,primera_opcion_p3,segunda_opcion_p3,tercera_opcion_p3;
+    private TextView pregunta1, pregunta2, pregunta3, ganaste_cantidad, tipo_logro;
+    private RadioGroup primera_pregunta, segunda_pregunta, tercera_pregunta;
+    private RadioButton primera_opcion_p1, segunda_opcion_p1, tercera_opcion_p1, primera_opcion_p2, segunda_opcion_p2, tercera_opcion_p2, primera_opcion_p3, segunda_opcion_p3, tercera_opcion_p3;
     private ImageView moneda;
     private Dialog popupModuloCulminado;
     private Button botonAceptar;
     private String uid;
     private DatabaseReference mDatabase;
+    String alternativaMarcadap1 = "";
+    String alternativaMarcadap2 = "";
+    String alternativaMarcadap3 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,19 +65,19 @@ public class ModuloCuestionarioActivity extends AppCompatActivity {
         pregunta2 = (TextView) findViewById(R.id.pregunta_2);
         pregunta3 = (TextView) findViewById(R.id.pregunta_3);
 
-        primera_pregunta = (RadioGroup)findViewById(R.id.primera_pregunta);
-        segunda_pregunta = (RadioGroup)findViewById(R.id.segunda_pregunta);
-        tercera_pregunta = (RadioGroup)findViewById(R.id.tercera_pregunta);
+        primera_pregunta = (RadioGroup) findViewById(R.id.primera_pregunta);
+        segunda_pregunta = (RadioGroup) findViewById(R.id.segunda_pregunta);
+        tercera_pregunta = (RadioGroup) findViewById(R.id.tercera_pregunta);
 
-        primera_opcion_p1 = (RadioButton)findViewById(R.id.primera_opcion_p1);
-        segunda_opcion_p1 = (RadioButton)findViewById(R.id.segunda_opcion_p1);
-        tercera_opcion_p1 = (RadioButton)findViewById(R.id.tercera_opcion_p1);
-        primera_opcion_p2 = (RadioButton)findViewById(R.id.primera_opcion_p2);
-        segunda_opcion_p2 = (RadioButton)findViewById(R.id.segunda_opcion_p2);
-        tercera_opcion_p2 = (RadioButton)findViewById(R.id.tercera_opcion_p2);
-        primera_opcion_p3 = (RadioButton)findViewById(R.id.primera_opcion_p3);
-        segunda_opcion_p3 = (RadioButton)findViewById(R.id.segunda_opcion_p3);
-        tercera_opcion_p3 = (RadioButton)findViewById(R.id.tercera_opcion_p3);
+        primera_opcion_p1 = (RadioButton) findViewById(R.id.primera_opcion_p1);
+        segunda_opcion_p1 = (RadioButton) findViewById(R.id.segunda_opcion_p1);
+        tercera_opcion_p1 = (RadioButton) findViewById(R.id.tercera_opcion_p1);
+        primera_opcion_p2 = (RadioButton) findViewById(R.id.primera_opcion_p2);
+        segunda_opcion_p2 = (RadioButton) findViewById(R.id.segunda_opcion_p2);
+        tercera_opcion_p2 = (RadioButton) findViewById(R.id.tercera_opcion_p2);
+        primera_opcion_p3 = (RadioButton) findViewById(R.id.primera_opcion_p3);
+        segunda_opcion_p3 = (RadioButton) findViewById(R.id.segunda_opcion_p3);
+        tercera_opcion_p3 = (RadioButton) findViewById(R.id.tercera_opcion_p3);
 
         pregunta1.setText(modulo.getPregunta1().getPregunta());
         pregunta2.setText(modulo.getPregunta2().getPregunta());
@@ -91,72 +94,84 @@ public class ModuloCuestionarioActivity extends AppCompatActivity {
         tercera_opcion_p3.setText(modulo.getPregunta3().getAlternativa3().getNombre());
 
 
-
         //Inicialización del PopUp
         popupModuloCulminado = new Dialog(this);
         popupModuloCulminado.setCanceledOnTouchOutside(false);
 
         popupModuloCulminado.setContentView(R.layout.modulo_culminado_popup);
-        botonAceptar = (Button)popupModuloCulminado.findViewById(R.id.botonAceptar);
-        ganaste_cantidad = (TextView)popupModuloCulminado.findViewById(R.id.ganaste_cantidad);
-        tipo_logro = (TextView)popupModuloCulminado.findViewById(R.id.tipo_logro);
-        moneda = (ImageView)popupModuloCulminado.findViewById(R.id.moneda);
+        botonAceptar = (Button) popupModuloCulminado.findViewById(R.id.botonAceptar);
+        ganaste_cantidad = (TextView) popupModuloCulminado.findViewById(R.id.ganaste_cantidad);
+        tipo_logro = (TextView) popupModuloCulminado.findViewById(R.id.tipo_logro);
+        moneda = (ImageView) popupModuloCulminado.findViewById(R.id.moneda);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
     }
 
     public void moduloTerminado(View view) {
-        if (primera_pregunta.getCheckedRadioButtonId() == -1 || segunda_pregunta.getCheckedRadioButtonId() == -1 || tercera_pregunta.getCheckedRadioButtonId() == -1)
-        {
-            Toast.makeText(this,"Por favor marque todos las alternativas, no se preocupe, no perderá puntos :) ",Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            int puntos_acumulados=0;
+        if (primera_pregunta.getCheckedRadioButtonId() == -1 || segunda_pregunta.getCheckedRadioButtonId() == -1 || tercera_pregunta.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "Por favor marque todos las alternativas, no se preocupe, no perderá puntos :) ", Toast.LENGTH_LONG).show();
+        } else {
+            int puntos_acumulados = 0;
             //Evaluación
-            switch(primera_pregunta.getCheckedRadioButtonId()) {
+            switch (primera_pregunta.getCheckedRadioButtonId()) {
                 case R.id.primera_opcion_p1:
                     if (modulo.getPregunta1().getAlternativa1().getEstado())
-                        puntos_acumulados+=modulo.getPregunta1().getPuntos();
-                        break;
+                        puntos_acumulados += modulo.getPregunta1().getPuntos();
+                    alternativaMarcadap1 = modulo.getPregunta1().getAlternativa1().getNombre();
+
+                    break;
                 case R.id.segunda_opcion_p1:
                     if (modulo.getPregunta1().getAlternativa2().getEstado())
-                        puntos_acumulados+=modulo.getPregunta1().getPuntos();
-                        break;
+                        puntos_acumulados += modulo.getPregunta1().getPuntos();
+                    alternativaMarcadap1 = modulo.getPregunta1().getAlternativa2().getNombre();
+
+                    break;
                 case R.id.tercera_opcion_p1:
                     if (modulo.getPregunta1().getAlternativa3().getEstado())
-                        puntos_acumulados+=modulo.getPregunta1().getPuntos();
-                        break;
+                        puntos_acumulados += modulo.getPregunta1().getPuntos();
+                    alternativaMarcadap1 = modulo.getPregunta1().getAlternativa3().getNombre();
+
+                    break;
             }
 
-            switch(segunda_pregunta.getCheckedRadioButtonId()) {
+            switch (segunda_pregunta.getCheckedRadioButtonId()) {
                 case R.id.primera_opcion_p2:
                     if (modulo.getPregunta2().getAlternativa1().getEstado())
-                        puntos_acumulados+=modulo.getPregunta2().getPuntos();
+                        puntos_acumulados += modulo.getPregunta2().getPuntos();
+                    alternativaMarcadap2 = modulo.getPregunta2().getAlternativa1().getNombre();
+
                     break;
                 case R.id.segunda_opcion_p2:
                     if (modulo.getPregunta2().getAlternativa2().getEstado())
-                        puntos_acumulados+=modulo.getPregunta2().getPuntos();
+                        puntos_acumulados += modulo.getPregunta2().getPuntos();
+                    alternativaMarcadap2 = modulo.getPregunta2().getAlternativa2().getNombre();
+
                     break;
                 case R.id.tercera_opcion_p2:
                     if (modulo.getPregunta2().getAlternativa3().getEstado())
-                        puntos_acumulados+=modulo.getPregunta2().getPuntos();
+                        puntos_acumulados += modulo.getPregunta2().getPuntos();
+                    alternativaMarcadap2 = modulo.getPregunta2().getAlternativa3().getNombre();
+
                     break;
             }
 
-            switch(tercera_pregunta.getCheckedRadioButtonId()) {
+            switch (tercera_pregunta.getCheckedRadioButtonId()) {
                 case R.id.primera_opcion_p3:
                     if (modulo.getPregunta3().getAlternativa1().getEstado())
-                        puntos_acumulados+=modulo.getPregunta3().getPuntos();
+                        puntos_acumulados += modulo.getPregunta3().getPuntos();
+                    alternativaMarcadap3 = modulo.getPregunta3().getAlternativa1().getNombre();
+
                     break;
                 case R.id.segunda_opcion_p3:
                     if (modulo.getPregunta3().getAlternativa2().getEstado())
-                        puntos_acumulados+=modulo.getPregunta3().getPuntos();
+                        puntos_acumulados += modulo.getPregunta3().getPuntos();
+                    alternativaMarcadap3 = modulo.getPregunta3().getAlternativa2().getNombre();
                     break;
                 case R.id.tercera_opcion_p3:
                     if (modulo.getPregunta3().getAlternativa3().getEstado())
-                        puntos_acumulados+=modulo.getPregunta3().getPuntos();
+                        puntos_acumulados += modulo.getPregunta3().getPuntos();
+                    alternativaMarcadap3 = modulo.getPregunta3().getAlternativa3().getNombre();
                     break;
             }
             //Toast.makeText(this,"Sacaste un total de: " + puntos_acumulados,Toast.LENGTH_LONG).show();
@@ -164,7 +179,7 @@ public class ModuloCuestionarioActivity extends AppCompatActivity {
         }
     }
 
-    public void MostrarPopUpDescubierto(final int cantidad){
+    public void MostrarPopUpDescubierto(final int cantidad) {
 
 
         //Una solo vez
@@ -176,24 +191,24 @@ public class ModuloCuestionarioActivity extends AppCompatActivity {
                 int monedas = usuario.getMonedas();
 
                 int total_monedas = monedas + cantidad;
-                Log.d("ModuloDetalleActivity","Ganó: "+total_monedas);
+                Log.d("ModuloDetalleActivity", "Ganó: " + total_monedas);
 
                 mDatabase.child("usuario").child(uid).child("monedas").setValue(total_monedas).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Log.d("ModuloDetalleActivity","Existoso");
-                        }else{
-                            Log.e("ModuloDetalleActivity","Hubo fallos");
+                        if (task.isSuccessful()) {
+                            Log.d("ModuloDetalleActivity", "Existoso");
+                        } else {
+                            Log.e("ModuloDetalleActivity", "Hubo fallos");
                         }
                     }
                 });
-                if (cantidad==0){
+                if (cantidad == 0) {
                     tipo_logro.setText("Fallaste");
                     ganaste_cantidad.setText("Lo siento para la próxima te irá mejor");
                     moneda.setVisibility(View.GONE);
                     botonAceptar.setBackgroundResource(R.drawable.boton_verde_redondo);
-                }else {
+                } else {
                     ganaste_cantidad.setText("¡Felicidades!, ganaste: " + String.valueOf(cantidad));
                 }
                 int total_experiencia = experiencia + 250;
@@ -201,28 +216,58 @@ public class ModuloCuestionarioActivity extends AppCompatActivity {
                 mDatabase.child("usuario").child(uid).child("exp").setValue(total_experiencia).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Log.d("ModuloDetalleActivity","Existoso");
-                        }else{
-                            Log.e("ModuloDetalleActivity","Hubo fallos");
+                        if (task.isSuccessful()) {
+                            Log.d("ModuloDetalleActivity", "Existoso");
+                        } else {
+                            Log.e("ModuloDetalleActivity", "Hubo fallos");
                         }
                     }
                 });
 
-                mDatabase.child("coleccion_modulo").child(uid).child(modulo.getId()).setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
+                mDatabase.child("coleccion_modulo").child(uid).child(modulo.getId()).child("estado").setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()){
-                            Log.d("ModuloDetalleActivity","Existoso");
-                        }else{
-                            Log.e("ModuloDetalleActivity","Hubo fallos");
+                        if (task.isSuccessful()) {
+                            Log.d("ModuloDetalleActivity", "Existoso");
+                        } else {
+                            Log.e("ModuloDetalleActivity", "Hubo fallos");
                         }
                     }
                 });
 
+                mDatabase.child("coleccion_modulo").child(uid).child(modulo.getId()).child("pregunta1").child("alternativaMarcada").setValue(alternativaMarcadap1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("ModuloDetalleActivity", "Existoso");
+                        } else {
+                            Log.e("ModuloDetalleActivity", "Hubo fallos");
+                        }
+                    }
+                });
+                mDatabase.child("coleccion_modulo").child(uid).child(modulo.getId()).child("pregunta2").child("alternativaMarcada").setValue(alternativaMarcadap2).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("ModuloDetalleActivity", "Existoso");
+                        } else {
+                            Log.e("ModuloDetalleActivity", "Hubo fallos");
+                        }
+                    }
+                });
+                mDatabase.child("coleccion_modulo").child(uid).child(modulo.getId()).child("pregunta3").child("alternativaMarcada").setValue(alternativaMarcadap3).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d("ModuloDetalleActivity", "Existoso");
+                        } else {
+                            Log.e("ModuloDetalleActivity", "Hubo fallos");
+                        }
+                    }
+                });
 
-                Log.d("ModuloDetalleActivity",dataSnapshot.getValue().toString());
-                Log.d("ModuloDetalleActivity",usuario.getNombre());
+                Log.d("ModuloDetalleActivity", dataSnapshot.getValue().toString());
+                Log.d("ModuloDetalleActivity", usuario.getNombre());
             }
 
             @Override
