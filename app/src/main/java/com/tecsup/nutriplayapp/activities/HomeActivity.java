@@ -81,7 +81,7 @@ public class HomeActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.mainTab);
         tabLayout.addTab(tabLayout.newTab().setText("Módulos"));
-        tabLayout.addTab(tabLayout.newTab().setText("Dato Curioso"));
+        //tabLayout.addTab(tabLayout.newTab().setText("Dato Curioso"));
         tabLayout.addTab(tabLayout.newTab().setText("Tip del Día"));
         tabLayout.setTabTextColors(Color.parseColor("#ffffff"), Color.parseColor("#ffffff"));
 
