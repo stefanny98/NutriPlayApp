@@ -153,6 +153,12 @@
                 android:onClick="moduloTerminado"
                 android:text="CULMINAR"
                 android:layout_gravity="center"/>
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/av6" />
         </LinearLayout>
     </ScrollView>
 
