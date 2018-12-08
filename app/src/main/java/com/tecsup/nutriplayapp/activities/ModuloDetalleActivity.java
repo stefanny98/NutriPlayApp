@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.tecsup.nutriplayapp.models.Contenido;
 import com.tecsup.nutriplayapp.models.Modulo;
 import com.tecsup.nutriplayapp.R;
+import com.tecsup.nutriplayapp.models.ModuloEstado;
 import com.tecsup.nutriplayapp.utilidades.MyViewPagerAdapter;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class ModuloDetalleActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnVolver, btnSiguiente;
     private Modulo modulo;
-    private Boolean realizado=false;
+    private ModuloEstado moduloEstado;
     private DatabaseReference mDatabase;
 
 
@@ -123,7 +124,11 @@ public class ModuloDetalleActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(current);
                 } else {
                     //Iniciar preguntas
-                    irAlCuestionario();
+                    if (moduloEstado.getEstado()){
+                        verMisResultados();
+                    }else{
+                        irAlCuestionario();
+                    }
                 }
             }
         });
@@ -139,9 +144,8 @@ public class ModuloDetalleActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     if (ds.getKey().equals(modulo.getId())){
-                        realizado = ds.getValue(Boolean.class);
+                        moduloEstado = ds.getValue(ModuloEstado.class);
                     }
-                    Log.d("ModuloDetalleActivity",""+ds.getValue(Boolean.class));
                 }
                 Log.d("ModuloDetalleActivity",dataSnapshot.getValue().toString());
             }
@@ -190,12 +194,14 @@ public class ModuloDetalleActivity extends AppCompatActivity {
         public void onPageSelected(int position) {
             addPuntosInferiores(position);
 
-            Log.d("ModuloDetalleActivity2",""+realizado);
             // changing the next button text 'NEXT' / 'GOT IT'
             if (position == layouts.length - 1) {
                 // last page. make button text to GOT IT
-                if (realizado){
-                    btnSiguiente.setVisibility(View.GONE);
+                if (moduloEstado.getEstado()){
+                    btnSiguiente.setTextSize(15);
+                    btnSiguiente.setBackground(getDrawable(R.drawable.boton_naranja_redondo));
+                    btnSiguiente.setTextColor(Color.WHITE);
+                    btnSiguiente.setText("VER RESULTADOS");
                 }else{
                     btnSiguiente.setTextSize(15);
                     btnSiguiente.setBackground(getDrawable(R.drawable.boton_naranja_redondo));
@@ -241,6 +247,14 @@ public class ModuloDetalleActivity extends AppCompatActivity {
         intent.putExtra("Modulo",modulo);
         startActivity(intent);
         finish();
+    }
+
+    private void verMisResultados() {
+        Intent intent = new Intent(ModuloDetalleActivity.this, ResultadosModuloActivity.class);
+        Log.d("Modulo1111",modulo.toString());
+        intent.putExtra("ModuloEstado",moduloEstado);
+        intent.putExtra("Modulo",modulo);
+        startActivity(intent);
     }
 
     @Override

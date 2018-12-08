@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".activities.ResultadosModuloActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Mis Resultados"
+        android:textSize="30sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="15dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:id="@+id/respuestaMarcada1"
+        android:text="Respuesta Marcada"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:text="Respuesta Correcta"
+        android:textSize="17sp"
+        android:layout_margin="25dp"
+        android:id="@+id/respuestaCorrecta1"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="25dp"
+        android:textSize="20sp"
+        android:id="@+id/respuestaMarcada2"
+        android:text="Respuesta Marcada"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:text="Respuesta Correcta"
+        android:textSize="17sp"
+        android:layout_margin="25dp"
+        android:id="@+id/respuestaCorrecta2"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="25dp"
+        android:textSize="20sp"
+        android:text="Respuesta Marcada"
+        android:id="@+id/respuestaMarcada3"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:text="Respuesta Correcta"
+        android:textSize="17sp"
+        android:layout_margin="25dp"
+        android:id="@+id/respuestaCorrecta3"/>
+
+</LinearLayout>
