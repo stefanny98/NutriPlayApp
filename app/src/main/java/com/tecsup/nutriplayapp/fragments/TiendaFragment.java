@@ -45,8 +45,8 @@ public class TiendaFragment extends Fragment {
         uid = user.getUid();
         //uid = "uX9yWXRpKcaC1JnupQ1IoODzjBr2";
 
-        misrecetasList = (RecyclerView) view.findViewById(R.id.tiendaLista);
-        total_monedas = (TextView)view.findViewById(R.id.total_monedas);
+        misrecetasList =  view.findViewById(R.id.tiendaLista);
+        total_monedas = view.findViewById(R.id.total_monedas);
 
         progress = new ProgressDialog(getContext());
         progress.setTitle("Cargando");

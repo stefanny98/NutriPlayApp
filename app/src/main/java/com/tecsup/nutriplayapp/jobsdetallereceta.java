@@ -19,7 +19,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class jobsdetallereceta extends AppCompatActivity {
 
     private ImageView imagenReceta;
-    private TextView nombre_receta;
+
     private CollapsingToolbarLayout collapsingToolbar;
 
     @Override
@@ -27,21 +27,25 @@ public class jobsdetallereceta extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jobsdetallereceta);
 
-        imagenReceta = (ImageView)findViewById(R.id.imagen_alimento);
-        collapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        nombre_receta = (TextView)findViewById(R.id.nombre);
+        imagenReceta = findViewById(R.id.imagen_alimento);
+        collapsingToolbar = findViewById(R.id.collapsing_toolbar);
+
 
         //Inicialización de la librería de fuentes de texto
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/PoiretOne-Regular.ttf").setFontAttrId(R.attr.fontPath).build());
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/dosis-book.ttf").setFontAttrId(R.attr.fontPath).build());
 
         String titulo = getIntent().getExtras().getString("titulo");
         Picasso.get().load(getIntent().getExtras().getString("imagen")).into(imagenReceta);
-        nombre_receta.setText(titulo);
+
 
         //Establecimiento de propiedades para el toolbar
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         collapsingToolbar.setTitle(" ");
+
+
+        collapsingToolbar.setTitle(titulo);
+
 
         TabLayout detalleTab = (TabLayout) findViewById(R.id.tabDetalle);
         detalleTab.addTab(detalleTab.newTab().setText("Ingredientes"));

@@ -1,5 +1,6 @@
 package com.tecsup.nutriplayapp.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,9 @@ import com.tecsup.nutriplayapp.R;
 
 import java.util.Arrays;
 import java.util.List;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class IngredientesFragment extends Fragment {
@@ -32,4 +36,5 @@ public class IngredientesFragment extends Fragment {
         }
         return view;
     }
+
 }
