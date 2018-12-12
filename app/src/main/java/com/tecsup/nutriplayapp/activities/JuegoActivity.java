@@ -65,10 +65,6 @@ public class JuegoActivity extends AppCompatActivity {
         setHilo();
 
         juegos = new ArrayList<>();
-        if (juegos.isEmpty()) {
-            img_vacio.setImageDrawable(getResources().getDrawable(R.drawable.av9));
-            txt_vacio.setText("Se acabaron los juegos por hoy, vuelve mañana!!");
-        }
         coleccion_juego = new HashMap<String,Boolean>();
 
         adapter = new JuegoAdapter(this, juegos);
