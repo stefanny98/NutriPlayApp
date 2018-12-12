@@ -24,7 +24,7 @@
     <color name="colorSecondaryDark">#c49000</color>
     <color name="colorPrimaryText">#f1f8e9</color>
     <color name="colorSecondaryText">#e8f5e9</color>
-    <color name="transparent_white_75">#BF84A770</color>
+    <color name="transparent_white_75">#F184A770</color>
 
     <color name="white">#fafafa</color>
     <color name="white_pressed">#B6B1AF</color>

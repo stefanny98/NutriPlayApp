@@ -43,7 +43,7 @@
 
         <activity
             android:name=".activities.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.HomeActivity" />
         <activity android:name=".activities.ModuloDetalleActivity" />
         <activity android:name=".PreguntaActivity" />
@@ -81,7 +81,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ResultadosModuloActivity"></activity>
+        <activity android:name=".activities.ResultadosModuloActivity" />
+        <activity android:name=".activities.RankingActivity"></activity>
     </application>
 
 </manifest>
