@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -49,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private View loginPanel;
     private boolean isNew;
+    private ImageView bgLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +60,9 @@ public class LoginActivity extends AppCompatActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
         loginPanel = (View) findViewById(R.id.login_panel);
-
+        //Image bg Glide
+        bgLogin = (ImageView) findViewById(R.id.bg_login);
+        //GlideApp
         initFirebaseAuth();
 
         initGoogleLogin();
