@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:layout_height="30dp">
+            android:layout_height="40dp">
 
             <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/facebookButton"
@@ -94,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:layout_height="30dp">
+            android:layout_height="40dp">
 
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/googleButton"
