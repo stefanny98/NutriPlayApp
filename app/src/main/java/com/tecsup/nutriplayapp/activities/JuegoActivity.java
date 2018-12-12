@@ -2,12 +2,15 @@ package com.tecsup.nutriplayapp.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +27,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -49,6 +54,9 @@ public class JuegoActivity extends AppCompatActivity {
 
         juegosList = (RecyclerView) findViewById(R.id.juegos_list);
 
+        //Hilo de preguntas
+        setPreguntas();
+        setHilo();
 
         juegos = new ArrayList<>();
         coleccion_juego = new HashMap<String,Boolean>();
@@ -67,6 +75,10 @@ public class JuegoActivity extends AppCompatActivity {
         //Inicialización de la librería de fuentes de texto
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/Overlock-Regular.ttf").setFontAttrId(R.attr.fontPath).build());
 
+    }
+
+    public void setPreguntas() {
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
         //uid = "uX9yWXRpKcaC1JnupQ1IoODzjBr2";
@@ -77,9 +89,13 @@ public class JuegoActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                int con = 0;
                 for (final DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     boolean estado = snapshot.getValue(Boolean.class);
-                    coleccion_juego.put(snapshot.getKey(),estado);
+                    if (con < 5) {
+                        coleccion_juego.put(snapshot.getKey(), estado);
+                    }
+                    con++;
                 }
                 adapter.notifyDataSetChanged();
                 progress.dismiss();
@@ -122,13 +138,27 @@ public class JuegoActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
+
+
+    public void setHilo() {
+        final Handler Myhandler = new Handler();
+        Myhandler.postDelayed(new Runnable() {
+            private long time = 0;
+            @Override
+            public void run() {
+                time+=1000;
+                Toast.makeText(JuegoActivity.this, "Cada 5 segundos", Toast.LENGTH_LONG).show();
+                setPreguntas();
+                Myhandler.postDelayed(this, 86400);
+            }
+        }, 86400);
+    }
+
+
     //Importante - Añadir este método es escencial para establecer el contexto base de la librería
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
-
 }
