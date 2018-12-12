@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -49,19 +50,25 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = LoginActivity.class.getSimpleName();
     private static final String LGN = "LoginProcess";
     private ProgressBar progressBar;
-    private View loginPanel;
+    private RelativeLayout loginPanel;
     private boolean isNew;
     private ImageView bgLogin;
-
+    private RelativeLayout rtFacebook, rtGoogle;
+    private LoginButton mFacebookButton;
+    private SignInButton mGoogleButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
-        loginPanel = (View) findViewById(R.id.login_panel);
+        loginPanel =  findViewById(R.id.panel_view);
         //Image bg Glide
         bgLogin = (ImageView) findViewById(R.id.bg_login);
+        rtFacebook = findViewById(R.id.rtFacebook);
+        rtGoogle = findViewById(R.id.rtGoogle);
+        mFacebookButton = (LoginButton) findViewById(R.id.facebookButton);
+         mGoogleButton = (SignInButton) findViewById(R.id.googleButton);
         //GlideApp
         initFirebaseAuth();
 
@@ -86,15 +93,10 @@ public class LoginActivity extends AppCompatActivity {
     private GoogleApiClient mGoogleApiClient;
 
     private void initGoogleLogin() {
-        SignInButton mGoogleButton = (SignInButton) findViewById(R.id.googleButton);
         mGoogleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(LGN, "Iniciando con Google");
-                loginPanel.setVisibility(View.GONE);
-                progressBar.setVisibility(View.VISIBLE);
-                Intent inicioSesion = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(inicioSesion, GOOGLE_SIGNIN_REQUEST);
+               startGoogleLogin();
             }
         });
 
@@ -114,6 +116,14 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
     }
 
+    private void startGoogleLogin(){
+        Log.d(LGN, "Iniciando con Google");
+        loginPanel.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
+        Intent inicioSesion = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        startActivityForResult(inicioSesion, GOOGLE_SIGNIN_REQUEST);
+    }
+
     //Login Normal con Facebook y Firebase
     private static final int FACEBOOK_SIGNIN_REQUEST = 64206;
     private CallbackManager mCallbackManager;
@@ -121,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
     public void initFacebookLogin() {
         Log.d(LGN, "Iniciando con Fb");
         mCallbackManager = CallbackManager.Factory.create();
-        LoginButton mFacebookButton = (LoginButton) findViewById(R.id.facebookButton);
+
         mFacebookButton.setReadPermissions("email", "public_profile");
         mFacebookButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -491,6 +501,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onStop();
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    public void onClick(View view) {
+        if( view == rtFacebook) {
+            mFacebookButton.performClick();
+        }else if (view == rtGoogle) {
+            startGoogleLogin();
         }
     }
 }

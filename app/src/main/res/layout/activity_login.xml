@@ -31,66 +31,96 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/login_panel"
+    <RelativeLayout
+        android:id="@+id/panel_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="118dp"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent">
 
         <ImageView
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
             android:id="@+id/imageView"
             android:layout_width="201dp"
             android:layout_height="154dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/logo_nutriplay1"
-            app:layout_constraintBottom_toTopOf="@+id/facebookButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            />
+        <RelativeLayout
+            android:layout_below="@id/imageView"
+            android:onClick="onClick"
+            android:id="@+id/rtFacebook"
 
-
-        <android.support.constraint.Group
-            android:id="@+id/group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/facebookButton"
+            android:background="@drawable/button_facebook"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="10dp"
-            android:paddingBottom="12dp"
-            android:paddingTop="12dp"
-            facebook:com_facebook_login_text="Ingresar con Facebook"
-            facebook:com_facebook_logout_text="Conectando..."
-            facebook:layout_constraintBottom_toTopOf="@+id/googleButton"
-            facebook:layout_constraintEnd_toEndOf="parent"
-            facebook:layout_constraintHorizontal_bias="0.5"
-            facebook:layout_constraintStart_toStartOf="parent"
-            facebook:layout_constraintTop_toBottomOf="@+id/imageView" />
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_height="30dp">
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/googleButton"
+            <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/facebookButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_centerVertical="true"
+                android:textAllCaps="false"
+                android:visibility="invisible"
+                facebook:com_facebook_login_text="Ingresar con Facebook"
+                facebook:com_facebook_logout_text="Conectando..."
+                facebook:layout_constraintEnd_toEndOf="parent"
+                facebook:layout_constraintHorizontal_bias="0.5"
+                facebook:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Continuar con facebook"/>
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_facebook"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rtGoogle"
+            android:onClick="onClick"
+            android:layout_below="@id/rtFacebook"
+            android:background="@drawable/button_google"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/facebookButton" />
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_height="30dp">
 
-    </android.support.constraint.ConstraintLayout>
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/googleButton"
+                android:layout_width="match_parent"
+                android:visibility="invisible"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Continuar con Google"/>
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_google"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+
 
 </RelativeLayout>
