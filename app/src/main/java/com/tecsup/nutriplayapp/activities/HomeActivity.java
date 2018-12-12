@@ -259,4 +259,9 @@ public class HomeActivity extends AppCompatActivity {
         monedas.setVisibility(View.VISIBLE);
         fab.setVisibility(View.VISIBLE);
     }
+
+    public void goToRanking(View view) {
+        Intent i1 = new Intent(this, RankingActivity.class);
+        startActivity(i1);
+    }
 }
