@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,6 +43,8 @@ public class JuegoActivity extends AppCompatActivity {
     private String pregunta_id;
     private List<Juego> juegos;
     private int n = 0;
+    private TextView txt_vacio;
+    private ImageView img_vacio;
     ProgressDialog progress;
     private String uid;
     private JuegoAdapter adapter;
@@ -53,12 +57,18 @@ public class JuegoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_juego);
 
         juegosList = (RecyclerView) findViewById(R.id.juegos_list);
+        txt_vacio = (TextView) findViewById(R.id.textView7);
+        img_vacio = (ImageView) findViewById(R.id.imageView12);
 
         //Hilo de preguntas
         setPreguntas();
         setHilo();
 
         juegos = new ArrayList<>();
+        if (juegos.isEmpty()) {
+            img_vacio.setImageDrawable(getResources().getDrawable(R.drawable.av9));
+            txt_vacio.setText("Se acabaron los juegos por hoy, vuelve mañana!!");
+        }
         coleccion_juego = new HashMap<String,Boolean>();
 
         adapter = new JuegoAdapter(this, juegos);
@@ -121,8 +131,6 @@ public class JuegoActivity extends AppCompatActivity {
                         }
 
                         adapter.notifyDataSetChanged();
-
-
                     }
 
                     @Override
@@ -148,7 +156,6 @@ public class JuegoActivity extends AppCompatActivity {
             @Override
             public void run() {
                 time+=1000;
-                Toast.makeText(JuegoActivity.this, "Cada 5 segundos", Toast.LENGTH_LONG).show();
                 setPreguntas();
                 Myhandler.postDelayed(this, 86400);
             }
